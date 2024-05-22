@@ -5,10 +5,16 @@ math problems with tag
 
 ## TODO:
 
-main design
-header design
+fix header
+
+/
+design
 
 /problems/post
-/tags
+design
 
-post problems
+/problems
+/tags
+cannot call db
+
+idk wat to do

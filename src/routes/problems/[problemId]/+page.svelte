@@ -4,13 +4,17 @@
 
 <section>
     <div>
-        <p>{problem.descrpition}</p>
+        <p>{problem.description}</p>
         
         <br>
 
         <ul>
             {#each problem.tags as tag}
-            <li>{tag}</li>
+            <li>
+                <a href='/tags/${tag}'>
+                    {tag}
+                </a>
+            </li>
             {/each}
         </ul>
     </div>

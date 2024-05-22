@@ -1,17 +1,17 @@
-<script> 
-    export let problems;
-    export let currentPage;
-    export let totalPages;
+<script>
+  export let tagName;
+  export let problems;
+  export let currentPage;
+  export let totalPages;
 </script>
-
+  
 <section>
     <div>
-        <h1>Problems</h1>
-
+        <h1>Problems tagged with "{tagName}"</h1>
         <ul>
             {#each problems as problem}
                 <li>
-                    <a href='/problems/${problem.id}'>
+                    <a href={`/problems/${problem.id}`}>
                         {problem.id}
                     </a>
                 </li>
