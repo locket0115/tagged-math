@@ -1,13 +1,20 @@
 <script>
-  export let tagName;
-  export let problems;
-  export let currentPage;
-  export let totalPages;
+    export let data;
+    
+    let tagName = data.props.tagName;
+    let problems = data.props.problems;
+    let currentPage = data.props.currentPage;
+    let totalPages = data.props.totalPages;
 </script>
-  
+
+<svelte:head>
+	<title>Tag : {tagName}</title>
+	<meta name="Tagged Math" content="demo web" />
+</svelte:head>
+
 <section>
     <div>
-        <h1>Problems tagged with "{tagName}"</h1>
+        <h1>"{tagName}" 태그를 가진 문제 목록</h1>
         <ul>
             {#each problems as problem}
                 <li>

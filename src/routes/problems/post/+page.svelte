@@ -2,7 +2,12 @@
     let description = '';
     let tags = '';
 </script>
-  
+
+<svelte:head>
+	<title>문제 게시</title>
+	<meta name="Tagged Math" content="demo web" />
+</svelte:head>
+
 <form method="POST">
     <div>
         <label for="description">Description:</label>

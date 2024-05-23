@@ -4,17 +4,8 @@ math problems with tag
 
 
 ## TODO:
+fix tags
 
-fix header
+design everything
 
-/
-design
-
-/problems/post
-design
-
-/problems
-/tags
-cannot call db
-
-idk wat to do
+Fin... maybe?

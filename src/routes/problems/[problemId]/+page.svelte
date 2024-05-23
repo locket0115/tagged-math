@@ -1,6 +1,14 @@
 <script>
-    export let problem;
+    export let data;
+
+    let problem = data.props.problem;
 </script>
+
+
+<svelte:head>
+	<title>{problem.id}</title>
+	<meta name="Tagged Math" content="demo web" />
+</svelte:head>
 
 <section>
     <div>
@@ -11,7 +19,7 @@
         <ul>
             {#each problem.tags as tag}
             <li>
-                <a href='/tags/${tag}'>
+                <a href='/tags/{tag}'>
                     {tag}
                 </a>
             </li>

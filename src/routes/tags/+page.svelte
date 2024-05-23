@@ -1,16 +1,24 @@
 <script>
-  export let tags;
-  export let currentPage;
-  export let totalPages;
+  export let data;
+
+  let tags = data.props.tags;
+  let currentPage = data.props.currentPage;
+  let totalPages = data.props.totalPages;
 </script>
-  
+
+
+<svelte:head>
+	<title>태그</title>
+	<meta name="Tags" content="demo web" />
+</svelte:head>
+
 <section>
   <div>
-    <h1>Tags</h1>
+    <h1>태그 목록</h1>
     <ul>
       {#each tags as tag}
         <li>
-          <a href='/tags/${tag}'>
+          <a href='/tags/{tag}'>
             {tag}
           </a>
         </li>
