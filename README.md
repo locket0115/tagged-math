@@ -2,6 +2,8 @@
 
 math problems with tag
 
+Implemented with sveltekit prisma sqlite
+
 
 ## TODO:
 fix tags
