@@ -20,6 +20,8 @@ export const actions = {
       }
     });
 
+    console.log("Problem uploaded")
+
     return { success: true };
   }
 };

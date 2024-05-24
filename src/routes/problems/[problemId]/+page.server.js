@@ -23,6 +23,8 @@ export async function load({ params }) {
       problem.tags = JSON.parse(problem.tags);
     }
 
+    console.log('problem load succesful:\n', problem);
+
     return {
       props: {
         problem

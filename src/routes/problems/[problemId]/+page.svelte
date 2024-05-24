@@ -6,16 +6,18 @@
 
 
 <svelte:head>
-	<title>{problem.id}</title>
+	<title>문제 {problem.id}</title>
 	<meta name="Tagged Math" content="demo web" />
 </svelte:head>
 
 <section>
     <div>
-        <p>{problem.description}</p>
+        <p><b>{problem.description}</b></p>
         
         <br>
+        <br>
 
+        <p>태그 목록</p> 
         <ul>
             {#each problem.tags as tag}
             <li>
@@ -29,6 +31,10 @@
 </section>
 
 <style>
+    div {
+        width: 100%;
+    }
+
 	section {
 		display: flex;
 		flex-direction: column;
