@@ -15,8 +15,6 @@ export async function load({ url }) {
         ]);
         
         console.log('Loaded Problems:', problems);
-        console.log('Loaded Pages:', page);
-        console.log('Total Pages:', Math.ceil(totalProblems / pageSize));
         
         return {
             props: {

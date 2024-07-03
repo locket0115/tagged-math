@@ -1,7 +1,8 @@
 <script>
-    export let data;
+    export let props;
+    let problem = props.problem;
 
-    let problem = data.props.problem;
+    console.log('Problem:', problem);
 </script>
 
 
@@ -12,6 +13,7 @@
 
 <section>
     <div>
+        <h1>문제</h1>
         <p><b>{problem.description}</b></p>
         
         <br>

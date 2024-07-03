@@ -1,27 +1,43 @@
-import prisma from '$lib/prisma';
+import { PrismaClient } from '@prisma/client';
+import { promises as fs } from 'fs';
+import { v4 as uuidv4 } from 'uuid';
+import path from 'path';
+
+const prisma = new PrismaClient();
+
+export async function load() {
+  return {};
+}
 
 export const actions = {
   default: async ({ request }) => {
-    const formData = await request.formData();
-    const description = formData.get('description');
-    const tags = formData.getAll('tags');
+    const data = await request.formData();
+    const description = data.get('description');
+    const tags = data.getAll('tags');
+    const image = data.get('image');
 
-    console.log('Form Data:', { description, tags });
+    let imageUrl = null;
 
-    if (!description || tags.length === 0) {
-      console.error('Description or tags are missing');
-      return { error: 'Description and tags are required' };
+    if (image && image.size > 0) {
+      const imageExtension = path.extname(image.name);
+      const imageName = `${uuidv4()}${imageExtension}`;
+      const imagePath = path.join('static', 'uploads', imageName);
+
+      await fs.writeFile(imagePath, await image.arrayBuffer());
+
+      imageUrl = `/uploads/${imageName}`;
     }
 
     await prisma.problem.create({
       data: {
         description,
-        tags: JSON.stringify(tags)
-      }
+        tags,
+        imageUrl,
+      },
     });
 
-    console.log("Problem uploaded")
-
-    return { success: true };
-  }
+    return {
+      status: 201,
+    };
+  },
 };
