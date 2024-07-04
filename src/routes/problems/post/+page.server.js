@@ -13,7 +13,7 @@ export const actions = {
   default: async ({ request }) => {
     const data = await request.formData();
     const description = data.get('description');
-    const tags = data.getAll('tags');
+    const tags = JSON.parse(data.get('tags'));
     const image = data.get('image');
 
     let imageUrl = null;

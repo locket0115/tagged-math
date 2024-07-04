@@ -4,13 +4,13 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DB_URL")
+  url      = env("DATABASE_URL")
 }
 
 model Problem {
   id          Int      @id @default(autoincrement())
   description String
-  tags        String[]
+  tags        Json
   imageUrl    String?
 }
 

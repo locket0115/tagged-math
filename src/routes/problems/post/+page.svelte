@@ -1,6 +1,5 @@
 <script>
     import { goto } from '$app/navigation';
-    import { onMount } from 'svelte';
 
     let description = '';
     let tagInput = '';
@@ -8,22 +7,25 @@
     let image = null;
 
     function addTag() {
-        if (tagInput.trim() && !tags.includes(tagInput.trim())) {
-            tags = [...tags, tagInput.trim];
+        if (tagInput.trim() && !tags.some(tag => tag.name === tagInput.trim())) {
+            tags = [...tags, { name: tagInput.trim() }];
             tagInput = '';
         }
     }
 
     function removeTag(tagToRemove) {
-        tags = tags.filter(tag => tag !== tagToRemove);
+        tags = tags.filter(tag => tag.name !== tagToRemove.name);
     }
 
     async function handleSubmit(event) {
         event.preventDefault();
-        const formData = new FormData(event.target);
+        const formData = new FormData();
         formData.append('description', description);
-        formData.append('tags', tags);
+        formData.append('tags', JSON.stringify(tags));
         formData.append('image', image);
+
+        console.log(description);
+        console.log(JSON.stringify(tags));
 
         const response = await fetch('/problems/post', {
             method: 'POST',
@@ -36,10 +38,6 @@
             console.error('Failed to upload problem');
         }
     }
-
-    onMount(() => {
-        console.log('Page mounted');
-    });
 </script>
 
 <svelte:head>
@@ -74,7 +72,7 @@
 <form on:submit={handleSubmit}>
     <div>
         <label for="description">문제 본문:</label>
-        <input id="description" type="text" bind:value={description} required>
+        <textarea id="description" bind:value={description} required></textarea>
     </div>
     <div>
         <label for="tags">태그:</label>
@@ -90,7 +88,7 @@
         <div class="tag-list">
             {#each tags as tag}
                 <div class="tag-item">
-                    <span>{tag}</span>
+                    <span>{tag.name}</span>
                     <button type="button" on:click={() => removeTag(tag)}>✖</button>
                 </div>
             {/each}
@@ -98,7 +96,7 @@
     </div>
     <div>
         <label for="image">이미지:</label>
-        <input id="image" type="file" on:change="{(e) => image = e.target.files[0]}" accept="image/*">
+        <!-- <input id="image" type="file" on:change="{(e) => image = e.target.files[0]}" accept="image/*"> -->
     </div>
     <button type="submit">문제 추가</button>
 </form>
