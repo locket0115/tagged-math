@@ -4,23 +4,26 @@
     import prisma from '$lib/prisma';
     import { renderLatex } from '$lib/katex';
     
-    export async function load({ params }) {
-        const problem = await prisma.problem.findUnique({
-            where: { id: parseInt(params.problemId) }
-        });
+    // export async function load({ params }) {
+    //     const problem = await prisma.problem.findUnique({
+    //         where: { id: parseInt(params.problemId) }
+    //     });
         
-        console.log(problem);
+    //     console.log(problem);
 
-        if (!problem) {
-            throw error(404, 'Problem not found');
-        }
+    //     if (!problem) {
+    //         throw error(404, 'Problem not found');
+    //     }
         
-        return { problem };
-    }
+    //     return { problem };
+    // }
 </script>
 
 <script>
-    export let problem;
+    export let data;
+    let problem = data.props.problem;
+
+    // console.log(problem);
 </script>
 
 <svelte:head>
@@ -47,8 +50,8 @@
         <ul>
             {#each problem.tags as tag}
             <li>
-                <a href='/tags/{tag}'>
-                    {tag}
+                <a href='/tags/{tag.name}'>
+                    {tag.name}
                 </a>
             </li>
             {/each}
